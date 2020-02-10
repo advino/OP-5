@@ -22,7 +22,7 @@ const sketch = p => {
         yDelta = yPos;
 
         for(let i = 0; i <= 23; i++) {
-            mallets.push(new Key(p, 30 + (i * 25), p.height/2, i + 29));
+            mallets.push(new Key(p, 30 + (i * 25), p.height/2, i + 53));
         }
     }
 
