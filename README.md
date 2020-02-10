@@ -1,4 +1,4 @@
-#OP-5 
+# OP-5 
 
 OP-5 is a p5.js library that allows musicians to create interactive visuals using the OP-1 from Teenage Engineering. 
 
