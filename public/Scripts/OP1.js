@@ -6,9 +6,7 @@ class OP1 {
         this.outputs;
         this.op1;
 
-        this.note;
         this.chord = [];
-        this.time = 0;
         this.state;
     }
 
@@ -43,7 +41,6 @@ class OP1 {
     triggerNote(message) {
         
         let midiNote = message.data;
-        let stamp = message.timeStamp;
 
         switch(midiNote[0]) {
             
@@ -81,6 +78,7 @@ class OP1 {
         input.forEach(i => {
             
             if(i.name === "OP-1 Midi Device") {
+
                 device = i;
             }
         });
@@ -89,8 +87,8 @@ class OP1 {
 
             console.log("Your OP-1 is not connected");
         }  else {
-            console.log("OP-1 Connected");
-            
+
+            console.log("OP-1 Connected");   
         }
 
         return device;
