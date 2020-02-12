@@ -7,14 +7,14 @@ class OP1 {
         this.op1;
 
         this.note;
+        this.chord = [];
+        this.time = 0;
         this.state;
     }
 
-    getNote() {
+    getNotes() {
 
-        return {
-            note: this.note
-        };
+        return this.chord;
     }
 
     async initialize() {
@@ -29,28 +29,44 @@ class OP1 {
 
             if(device !== null) {
                 device.onmidimessage = (midimessage) => {
-               
-                    let data = midimessage.data;
-                    // console.log(data);
-                    switch(data[0]) {
-                        
-                        case 144: 
-                            this.note = data[1];
-                            break;
-                        
-                        case 128:
-                            this.note = 0;
-                            break;
-                        
-                        default:
-                            break;
-                   }
-                   
+                    
+                    if(midimessage.data.length > 1) {
+                        this.triggerNote(midimessage);
+                    }
             } 
         }   else {
                 console.error("No OP-1 Found");
             }
         });
+    }
+
+    triggerNote(message) {
+        
+        let midiNote = message.data;
+        let stamp = message.timeStamp;
+
+        switch(midiNote[0]) {
+            
+            case 144: 
+                this.note = midiNote[1];
+                this.time = stamp;
+                console.log(message.timeStamp);
+                this.createChord(midiNote[1]);
+                break;
+            
+            // case 128:
+            //     this.note = 0;
+            //     break;
+            
+            default:
+                break;
+       }
+    }
+
+    createChord(note) {
+        
+        this.chord.push(note);
+        return this.chord;
     }
 
     checkForDevice(input) {

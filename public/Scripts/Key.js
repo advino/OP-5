@@ -30,11 +30,7 @@ class Key {
     }
 
     checkState(data) {
-       if(this.note === data.note) {
-           this.state = 144;
-       } else {
-           this.state = 128;
-       }
+      this.state = data;
     }
 }
 

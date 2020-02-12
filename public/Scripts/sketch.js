@@ -3,8 +3,6 @@ import Key from './key.js';
 
 const sketch = p => {
 
-    let yPos;
-    let yDelta;
     let device;
     let mallets = [];
 
@@ -18,26 +16,37 @@ const sketch = p => {
     p.setup = () => {
 
         p.createCanvas(640, 480);
-        yPos = p.height/2;
-        yDelta = yPos;
 
         for(let i = 0; i <= 23; i++) {
             mallets.push(new Key(p, 30 + (i * 25), p.height/2, i + 53));
         }
+
+       
     }
 
     p.draw = () => {
         p.background(0);
 
-        let data = device.getNote();
+        let data = device.getNotes();
 
+        // Rendering mallets
         mallets.forEach(m => {
+            
             m.render();
-
-            m.checkState(device.getNote());
         });
 
+        for(let note of data) {
 
+            let m = mallets.find(elt => {
+
+                // console.log(elt.note);
+                return elt.note === note;
+            });
+
+            m.checkState(144);
+        }
+
+        // console.log(data);
     }
 
 }
