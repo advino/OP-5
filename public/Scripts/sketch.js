@@ -33,17 +33,17 @@ const sketch = p => {
         mallets.forEach(m => {
             
             m.render();
+            m.state = 128;
         });
 
         for(let note of data) {
 
-            let m = mallets.find(elt => {
+            let mPressed = mallets.find(elt => {
 
-                // console.log(elt.note);
                 return elt.note === note;
             });
 
-            m.checkState(144);
+            mPressed.checkState(144);
         }
 
         // console.log(data);

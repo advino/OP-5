@@ -48,25 +48,32 @@ class OP1 {
         switch(midiNote[0]) {
             
             case 144: 
-                this.note = midiNote[1];
-                this.time = stamp;
-                console.log(message.timeStamp);
-                this.createChord(midiNote[1]);
+                this.pushChord(midiNote[1]);
                 break;
             
-            // case 128:
-            //     this.note = 0;
-            //     break;
+            case 128:
+                this.trimChord(midiNote[1]);
+                break;
             
             default:
                 break;
        }
     }
 
-    createChord(note) {
+    pushChord(note) {
         
         this.chord.push(note);
         return this.chord;
+    }
+
+    trimChord(note) {
+        let idx = this.chord.findIndex(elt => {
+            console.log(elt);
+            elt === note;
+
+        });
+        
+        this.chord.splice(idx,1);
     }
 
     checkForDevice(input) {
