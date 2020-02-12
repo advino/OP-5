@@ -68,9 +68,8 @@ class OP1 {
 
     trimChord(note) {
         let idx = this.chord.findIndex(elt => {
-            console.log(elt);
+            
             elt === note;
-
         });
         
         this.chord.splice(idx,1);
