@@ -41,7 +41,6 @@ class OP1 {
     triggerNote(message) {
         
         let midiNote = message.data;
-
         switch(midiNote[0]) {
             
             case 144: 

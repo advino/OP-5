@@ -20,8 +20,6 @@ const sketch = p => {
         for(let i = 0; i <= 23; i++) {
             mallets.push(new Key(p, 30 + (i * 25), p.height/2, i + 53));
         }
-
-       
     }
 
     p.draw = () => {
@@ -42,11 +40,8 @@ const sketch = p => {
 
                 return elt.note === note;
             });
-
             mPressed.checkState(144);
         }
-
-        // console.log(data);
     }
 
 }
